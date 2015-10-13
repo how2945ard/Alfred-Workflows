@@ -13,16 +13,17 @@ import urllib2
 import json
 import sys
 
-query = sys.argv[1]
+query = '{query}'
+
+#Change the sort number 0,1,2,3,4,5 into your own.
 
 api = {
-'goo.gl' : {'api_url':'https://www.googleapis.com/urlshortener/v1/url','title':'goo.gl','des':'http://goo.gl/'},
-'git.io' : {'api_url':'http://git.io','title':'git.io','des':'http://git.io/'}
+0 : {'api_url':'https://api-ssl.bitly.com/v3/shorten?format=json&login=hzlzh&apiKey=R_e8bcc43adaa5f818cc5d8a544a17d27d&longUrl=','title':'bit.ly','des':'http://bit.ly/'}
 }
 
 fb = Feedback()
 for title in api:
     fb.add_item(api[title]['title'],
         subtitle="Using %s" % api[title]['des'],
-        arg='{"type":"'+title+'","api_url":"'+api[title]['api_url']+'","long_url":"'+query+'"}',icon='favicons/'+title+'.png')
+        arg='{"type":"'+api[title]['title']+'","api_url":"'+api[title]['api_url']+'","long_url":"'+query+'"}',icon='favicons/'+api[title]['title']+'.png')
 print fb
